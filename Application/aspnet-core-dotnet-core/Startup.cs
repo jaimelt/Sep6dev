@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Firebase.Auth;
+using aspnet_core_dotnet_core.Data;
 
 namespace aspnet_core_dotnet_core
 {
@@ -34,6 +35,7 @@ namespace aspnet_core_dotnet_core
             });
 
             services.AddSingleton<MoviesRepo>();
+            services.AddSingleton<LoginService>();
             var authOptions = Configuration.GetSection("FirebaseAuth").Get<FirebaseAuthOptions>();
             services.AddSingleton<IFirebaseAuthService>(u => new FirebaseAuthService(authOptions));
             services.AddRazorPages();

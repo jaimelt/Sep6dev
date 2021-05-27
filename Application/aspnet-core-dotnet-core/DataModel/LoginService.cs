@@ -16,7 +16,7 @@ namespace aspnet_core_dotnet_core.Data
         {
             _firebase = firebase;
         }
-        public async Task<string> SignUp(string username, string password)
+        public async Task<string> SignUpAsync(string username, string password)
         {
 
 
@@ -59,7 +59,7 @@ namespace aspnet_core_dotnet_core.Data
             {
                 System.Diagnostics.Debug.WriteLine("Try works");
                 var response = await _firebase.VerifyPassword(request);
-                string message = "Loged in succesfully";
+                string message = "Logged in succesfully";
                 return message;
             }
             catch (FirebaseAuthException e)
