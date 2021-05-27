@@ -1,61 +1,70 @@
 ﻿@page
 
-@model IndexModel
-@using aspnet_core_dotnet_core.Data;
-@using System.Collections;
+@model Index
+
 @{
     ViewData["Title"] = "Home Page - ASP.NET Core";
-    if (Model.movies == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
+    
         <h1>Movies</h1>
 
         <p>This component demonstrates fetching data from a service.</p>
 
-        <div class="row searchactionrow">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <button class="btn btn-default"></button>
+    <div class="row searchactionrow">
+        <div class="col-md-6">
+            <div class="input-group">
+                <button class="btn btn-default"></button>
 
-                    <input type="text" class="form-control" name="x" placeholder="Search term...">
-                    <button class="btn btn-primary" onclick="search()">Search</button>
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <button class="btn btn-primary" onclick="search()">Search</button>
               
                     
 
-                </div>
             </div>
         </div>
+    </div>
+    
+    <form >
+        <p>
+            Title: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Submit" />
+            <a asp-page="Index">Search by title</a>
+        </p>
+    </form>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Movie Name</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var movie in Model.movies)
-                {
-                    <tr>
-                        <td>@movie.movieId</td>
-                        <td>@movie.movieTitle</td>
-                        <td>
-                            <a class="nav-link" href="viewmovie/{@movie.movieYear}">
-                                @movie.movieYear
-                            </a>
-                        </td>
-
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.listMovies[0].movieId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listMovies[0].movieTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listMovies[0].movieYear)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.listMovies) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.movieId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.movieTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.movieYear)
+                </td>
+        
+            </tr>
+        }
+        </tbody>
+    </table>
     }
-}
+
 
 <script type="text/javascript">
     function search() {

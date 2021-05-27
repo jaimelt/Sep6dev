@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Application",
+    "\\Application\\aspnet-core-dotnet-core",
+    "\\Application\\aspnet-core-dotnet-core.FunctionalTests",
+    "\\Application\\aspnet-core-dotnet-core\\DataModel",
+    "\\Application\\aspnet-core-dotnet-core\\Pages",
+    "\\Application\\aspnet-core-dotnet-core\\Repositories"
+  ],
+  "SelectedNode": "\\Application\\aspnet-core-dotnet-core\\Repositories\\MoviesRepository.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using aspnet_core_dotnet_core.repo;
@@ -26,27 +27,13 @@ namespace aspnet_core_dotnet_core.Data
         }
 
 
-        public Movie[] searchMovieByName(string movieName)
+        public IEnumerable<Movie> searchMovieByName(string movieName)
         {
-            ArrayList movies = moviesRepo.GetMovies();
-            Movie[] moviesArr = new Movie[movies.Count];
-
-            if (movies.Count != 0)
-            {
-                for (int i = 0; i < movies.Count; i++)
-                {
-                    moviesArr[i] = (Movie)movies[i];
-                }
-            }
-
-            return moviesArr;
+            return moviesRepo.SearchMovieByName(movieName);
         }
 
-        public Movie GetMovieFullDetails(string movieName)
-        {
-            Movie movie = moviesRepo.GetMovieFullDetails(movieName);
-            return movie;
+         
 
-        }
+  
     }
 }
