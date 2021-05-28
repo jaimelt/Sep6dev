@@ -7,7 +7,6 @@ namespace aspnet_core_dotnet_core.Data
     {
 
 
-        
         [JsonPropertyName("id")]
         public int movieId { get; set; }
 
