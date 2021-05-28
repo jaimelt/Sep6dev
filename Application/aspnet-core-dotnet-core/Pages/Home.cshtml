@@ -1,5 +1,7 @@
-﻿@page
+﻿@page "{id}"
+@inject LoginCredentials loginCredentials;
 
+@using aspnet_core_dotnet_core.Data
 @model Index
 
 @{
@@ -63,8 +65,8 @@
                                 @Html.DisplayFor(modelItem => item.movieYear)
                             </td>
                              <td>
-                                            <a asp-page="./Details" asp-route-ID="@item.movieId">Details</a> 
-                                         <a asp-page="./MyList" asp-route-data="@item.movieId">Add to my list</a>
+                                 <a asp-page="./Details" asp-route-ID="@item.movieId">Details</a> 
+                                 <a asp-page="./MyList" asp-route-ID="@item.movieId" asp-route-data="@loginCredentials.email" >Add to my list</a>
                                         </td>
                         </tr>
                     }

@@ -35,7 +35,7 @@ namespace aspnet_core_dotnet_core.Pages
         {
             moviesService = new MoviesService();
             listMovies = new List<Movie>(); 
-            listMovies = moviesService.GetAllMovies(); 
+            listMovies = moviesService.GetAllMovies();
 
         }
     

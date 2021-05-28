@@ -15,9 +15,6 @@
             this.email = email; 
         }
         
-        public LoginCredentials()
-        {
-            
-        }
+     
     }
 }
