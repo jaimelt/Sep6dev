@@ -4,67 +4,64 @@
 
 @{
     ViewData["Title"] = "Home Page - ASP.NET Core";
-    
-        <h1>Movies</h1>
 
-        <p>This component demonstrates fetching data from a service.</p>
+    <h1>Movies</h1>
 
-    <div class="row searchactionrow">
-        <div class="col-md-6">
-            <div class="input-group">
-                <button class="btn btn-default"></button>
+    <p>This component demonstrates fetching data from a service.</p>
 
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <button class="btn btn-primary" onclick="search()">Search</button>
-              
-                    
 
-            </div>
-        </div>
-    </div>
-    
     <form >
         <p>
-            Title: <input type="text" asp-for="SearchString" />
-            <input type="submit" value="Submit" />
-            <a asp-page="Index">Search by title</a>
+            Year: <input type="text" asp-for="SearchString"/>
+            <input type="submit" value="Submit"/>
+            <a asp-page="Index">Search by year</a>
         </p>
     </form>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.listMovies[0].movieId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.listMovies[0].movieTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.listMovies[0].movieYear)
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.listMovies) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movieId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movieTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movieYear)
-                </td>
-        
-            </tr>
-        }
-        </tbody>
-    </table>
+    @if (!string.IsNullOrEmpty(Model.SearchString))
+    {
+        <p> Model is loading </p>
     }
 
+    else
+    {
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.listMovies[0].movieId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.listMovies[0].movieTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.listMovies[0].movieYear)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.listMovies)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movieId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movieTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movieYear)
+                    </td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}
 
 <script type="text/javascript">
     function search() {
