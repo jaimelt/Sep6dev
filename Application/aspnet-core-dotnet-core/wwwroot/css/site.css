@@ -126,3 +126,13 @@ body {
 .col-md-4 {
     color: black;
 }
+
+#SearchStringActor
+{
+    margin-left: 19px;
+}
+
+#SearchString
+{
+    margin-left: 27px;
+}
