@@ -24,7 +24,12 @@ namespace aspnet_core_dotnet_core.Pages
 
         public MoviesService moviesService;
 
-      
+        public LoginCredentials loginCredentials;
+
+        public  Index(LoginCredentials loginCredentials)
+        {
+            this.loginCredentials = loginCredentials; 
+        }
         
         public void OnGet()
         {

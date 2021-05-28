@@ -36,6 +36,7 @@ namespace aspnet_core_dotnet_core
 
             services.AddSingleton<MoviesRepo>();
             services.AddSingleton<LoginService>();
+            services.AddSingleton<LoginCredentials>();
             var authOptions = Configuration.GetSection("FirebaseAuth").Get<FirebaseAuthOptions>();
             services.AddSingleton<IFirebaseAuthService>(u => new FirebaseAuthService(authOptions));
            services.AddRazorPages();
