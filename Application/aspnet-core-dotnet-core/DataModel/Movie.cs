@@ -7,13 +7,10 @@ namespace aspnet_core_dotnet_core.Data
     {
 
 
-        [JsonPropertyName("id")]
         public int movieId { get; set; }
 
-        [JsonPropertyName("title")]
         public string movieTitle { get; set; }
 
-        [JsonPropertyName("year")]
         public int movieYear { get; set; }
     }
 }

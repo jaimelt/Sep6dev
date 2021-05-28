@@ -1,0 +1,138 @@
+﻿@page "{id}"
+@model aspnet_core_dotnet_core.Pages.Details
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.movie[0].movieId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie[0].movieTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie[0].movieYear)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.movie) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem =>  item.movieId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.movieTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.movieYear)
+                </td>
+            
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                <b>Actors</b>
+                </th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.actors)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                
+
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+           
+          <th>
+                          <b>Directors</b>
+                          </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.directors)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                
+
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.ratings[0].rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ratings[0].votes)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.ratings)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.votes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rating)
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+<a asp-page="./Index" >Back to Index</a> 
+</body>
+</html>

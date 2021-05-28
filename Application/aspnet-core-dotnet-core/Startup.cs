@@ -38,7 +38,8 @@ namespace aspnet_core_dotnet_core
             services.AddSingleton<LoginService>();
             var authOptions = Configuration.GetSection("FirebaseAuth").Get<FirebaseAuthOptions>();
             services.AddSingleton<IFirebaseAuthService>(u => new FirebaseAuthService(authOptions));
-            services.AddRazorPages();
+           services.AddRazorPages();
+
            
         }
 

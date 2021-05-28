@@ -14,54 +14,47 @@ namespace aspnet_core_dotnet_core.Pages
 {
     public class Index : PageModel
     {
-        [BindProperty(SupportsGet = true)]
-        [DisplayFormat(NullDisplayText="", ApplyFormatInEditMode=true)]
+        [BindProperty]
         public string SearchString { get; set; }
+        [BindProperty]
+        public string SearchStringActor { get; set; }
+        [BindProperty]
+        public string SearchStringDirector { get; set; }
         public IList<Movie> listMovies { get; set;  }
 
-        public Index( )
-        {
-            listMovies = new List<Movie>();
-            this.SearchString = SearchString; 
-                Movie movie = new Movie();
-            movie.movieId = 12;
-            movie.movieTitle = "fsdsdf";
-            movie.movieYear = 2000; 
-        }
-        
-        public async Task OnGetAsync(string SearchString)
-        {
-            //SearchString = this.SearchString;
-            System.Diagnostics.Debug.WriteLine("---------------------------------------------------------------fsdfsdfsdfsdfsd");
-            MoviesService moviesService = new MoviesService();
-            listMovies = new List<Movie>();
-            Movie[] moviesTemp = moviesService.GetAllMovies();
-            
-            if(String.IsNullOrEmpty(SearchString))
-            {
-                listMovies = moviesTemp.ToList(); 
-            }
-            
-            var movies = from m in moviesTemp select m;
+        public MoviesService moviesService;
 
-            movies = movies.Where(s => s.movieTitle.Contains(SearchString));
-            
-            listMovies = movies.ToList(); 
+      
+        
+        public void OnGet()
+        {
+            moviesService = new MoviesService();
+            listMovies = new List<Movie>(); 
+            listMovies = moviesService.GetAllMovies(); 
 
         }
     
-        public async Task OnPostTask(string SearchString)
+        public void OnPostSubmit()
+        {           
+            moviesService = new MoviesService();
+            listMovies = moviesService.searchMovieByName(SearchString).ToList();
+       
+        }
+        
+        public void OnPostRegister()
         {
-            Console.WriteLine("---------------------------------------------------------------fsdfsdfsdfsdfsd");
-            MoviesService moviesService = new MoviesService();
-            listMovies = new List<Movie>();
-            Movie[] moviesTemp = moviesService.GetAllMovies();
+           
+            moviesService = new MoviesService();
+            listMovies = moviesService.searchMovieByActor(SearchStringActor).ToList();
 
-            var movies = from m in moviesTemp select m;
-
-            movies = movies.Where(s => s.movieTitle.Contains("Dama"));
+        }
+        
+        public void OnPostSearch()
+        {
+            Console.WriteLine(SearchStringDirector);
+            moviesService = new MoviesService();
+            listMovies = moviesService.searchMovieByDirector(SearchStringDirector).ToList();
             
-            listMovies = movies.ToList(); 
         }
       
     }
