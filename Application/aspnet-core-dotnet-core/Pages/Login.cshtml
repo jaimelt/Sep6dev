@@ -1,7 +1,9 @@
-﻿@page
+﻿@page "/"
 @model LoginModel
 @{
     ViewData["Title"] = "Login";
+    ViewBag.HideNavBar = true;
+
 }
 <br />
 <h4>Your application description page.</h4>
@@ -28,14 +30,32 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Submit" asp-page-handler="Submit" />
-                <input type="submit" value="Register" asp-page-handler="Register" /></td>
+                <td>
+                    <input type="submit" value="Submit" asp-page-handler="Submit" />
+                    <input type="submit" value="Register" asp-page-handler="Register" />
+                </td>
             </tr>
         </table>
 
         <hr />
     </form>
-    @Html.DisplayFor(model => model.Name)
+    @*@Html.DisplayFor(model => model.Succes)*/*@
+
+    @if (Model.Succes.Equals("Logged in succesfully"))
+    {
+        <h4>Succesfully please go to Home page</h4>
+        <a class="text-dark" asp-area="" asp-page="/Home">Enter page</a>
+    }
+    @if (Model.Succes.Equals("Registered"))
+    {
+        <h4>Succesfully registered please sign in</h4>
+
+    }
+
+
+
+
+
 </body>
 </html>
 

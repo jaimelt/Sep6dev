@@ -2,8 +2,14 @@
 {
     public class LoginCredentials
     {
-        public string email { get; set; }
+        public string email { get; set; } = "";
 
+
+
+        public LoginCredentials()
+        {
+        
+        }
         public LoginCredentials(string email)
         {
             this.email = email; 
