@@ -13,13 +13,16 @@ namespace aspnet_core_dotnet_core.Pages
 
         public LoginService _LoginService;
 
-        public LoginModel (LoginService loginService)
+        public LoginCredentials _loginCredentials;
+
+        public LoginModel (LoginService loginService, LoginCredentials loginCredentials)
         {
             _LoginService = loginService;
+            _loginCredentials = loginCredentials;
         }
 
         [BindProperty]
-        public string Name { get; set; } 
+        public string Succes { get; set; } = "";
 
         public void OnGet()
         {
@@ -28,18 +31,31 @@ namespace aspnet_core_dotnet_core.Pages
 
         public async void OnPostSubmit(Login login)
         {
-            
-            Name =  _LoginService.SignIn(login.Email, login.Password).Result;
-           
-                  
+
+            Succes =  _LoginService.SignIn(login.Email, login.Password).Result;
+            validateLogin(login.Email);
+
         }
          
         public async void OnPostRegister(Login login)
         {
-            Name = _LoginService.SignUpAsync(login.Email, login.Password).Result;
-        
+            Succes = _LoginService.SignUpAsync(login.Email, login.Password).Result;
+
+
+
+        }
+
+        public void validateLogin(string email)
+        {
+            if (Succes.Equals("Logged in succesfully"))
+            {
+                _loginCredentials.email = email;
+            }
+
+
+        }
         }
 
        
-    }
+    
 }

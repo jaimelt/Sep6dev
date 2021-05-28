@@ -30,7 +30,7 @@ namespace aspnet_core_dotnet_core.Data
             {
                 System.Diagnostics.Debug.WriteLine("Try works");
                 var response = await _firebase.SignUpNewUser(request);
-                string message = response.Email + " registered.";
+                string message = "Registered";
                 return message;
 
             }

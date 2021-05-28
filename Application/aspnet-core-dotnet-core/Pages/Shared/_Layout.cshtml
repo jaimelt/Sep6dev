@@ -1,3 +1,9 @@
+
+@using aspnet_core_dotnet_core.Data;
+
+@inject LoginCredentials loginCredentials;
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +23,12 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.min.css" />
 </head>
-<body>
+@if (ViewBag.HideNavBar == null)
+{
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">ASP.NET Core</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Home">ASP.NET Core</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +36,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/About">About</a>
@@ -40,14 +47,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/SearchByTitle">SearchByTitle</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Login">Login</a>
+                            <p class="text-light my-auto">Loged in as: @loginCredentials.email</p>
                         </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+}
+<body>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
