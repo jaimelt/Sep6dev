@@ -12,127 +12,176 @@
     <title></title>
 </head>
 <body>
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.movie[0].movieId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.movie[0].movieTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.movie[0].movieYear)
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.movie) {
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.movie[0].movieId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.movie[0].movieTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.movie[0].movieYear)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.movie)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.movieId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.movieTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.movieYear)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <b>Actors</b>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.actors)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        <b>Directors</b>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.directors)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ratings[0].rating)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ratings[0].votes)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ratings)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.votes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rating)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <form method="post">
+        <table>
             <tr>
+                <td>Leave a comment: </td>
                 <td>
-                    @Html.DisplayFor(modelItem =>  item.movieId)
+                    <input type="text" id="Comment" name="Comment" />
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movieTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movieYear)
-                </td>
-            
+                <input type="submit" value="Submit" asp-page-handler="Submit" />
             </tr>
-        }
-        </tbody>
-    </table>
+        </table>
+    </form>
 
-</div>
 
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                <b>Actors</b>
-                </th>
-           
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.actors)
-        {
-            <tr>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
 
-            </tr>
-        }
-        </tbody>
-    </table>
+                    <th>
+                        @Html.DisplayNameFor(model => model.comments[0].Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.comments[0].Comment)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.comments)
+                {
+                    <tr>
 
-</div>
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-           
-          <th>
-                          <b>Directors</b>
-                          </th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.directors)
-        {
-            <tr>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment)
+                        </td>
 
-            </tr>
-        }
-        </tbody>
-    </table>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-</div>
+    </div>
 
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.ratings[0].rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ratings[0].votes)
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.ratings)
-        {
-            <tr>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.votes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.rating)
-                </td>
 
-            </tr>
-        }
-        </tbody>
-    </table>
 
-</div>
-<a asp-page="./Index" >Back to Index</a> 
+    <a asp-page="./Index">Back to Index</a>
 </body>
 </html>
