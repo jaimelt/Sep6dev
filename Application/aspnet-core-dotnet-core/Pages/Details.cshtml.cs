@@ -25,6 +25,10 @@ namespace aspnet_core_dotnet_core.Pages
         public DirectorsService DirectorsService;
         public CommentService CommentsService;
         public static int MovieID;
+
+
+
+
         public Details(LoginCredentials loginCredentials) 
         {
             _loginCredentials = loginCredentials;

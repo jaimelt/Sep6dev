@@ -12,5 +12,8 @@ namespace aspnet_core_dotnet_core.Data
         public string movieTitle { get; set; }
 
         public int movieYear { get; set; }
+
+        public double rating { get; set; }
+        public int votes { get; set; }
     }
 }
