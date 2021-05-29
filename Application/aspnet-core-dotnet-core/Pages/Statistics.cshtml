@@ -2,7 +2,7 @@
 @model StatisticsModel
 
 @{
-    
+ 
 }
 
 <!DOCTYPE html>
@@ -17,12 +17,34 @@
 </head>
 
 <body>
+
+    <div class="row">
+        <div class="col-lg-1">
+            <form asp-page-handler="votes" method="post">
+                <button class="btn btn-secondary">Most voted movies</button>
+            </form>
+        </div>
+        <div class="col-lg-1">
+            <form asp-page-handler="rating" method="post">
+                <button class="btn btn-secondary">Most rated movies</button>
+            </form>
+        </div>
+        <div class="col-lg-1">
+            <form asp-page-handler="view" method="post">
+                <button class="btn btn-secondary">View</button>
+            </form>
+        </div>
+    </div>
+  
+
     <form method="post">
         <div>@Html.Raw(Model.ChartJson)</div>
         <br />
     </form>
 </body>
 </html>
+
+
 
 
 <script typdse="text/javascript" src="/Scripts/fusioncharts/fusioncharts.js"></script>

@@ -15,5 +15,7 @@ namespace aspnet_core_dotnet_core.Data
 
         public double rating { get; set; }
         public int votes { get; set; }
+
+        public string email { get; set; }
     }
 }

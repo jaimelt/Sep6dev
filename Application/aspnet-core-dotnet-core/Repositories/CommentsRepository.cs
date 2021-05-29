@@ -22,15 +22,15 @@ namespace aspnet_core_dotnet_core.repo
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                   
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 int index = 0;
                                 Comments comment = new Comments();
-                               
-                                comment.Email = reader.GetString(index++);  
+
+                                comment.Email = reader.GetString(index++);
                                 comment.Comment = reader.GetString(index++);
                                 Comments.Add(comment);
                             }
@@ -51,12 +51,12 @@ namespace aspnet_core_dotnet_core.repo
 
 
 
-        public void insertComment(int movieId, string email,string comment)
+        public void insertComment(int movieId, string email, string comment)
         {
-          
+
 
             try
-            {   
+            {
 
                 using (SqlConnection connection = new SqlConnection(MoviesRepo.dbConnectionString))
                 {
@@ -66,26 +66,31 @@ namespace aspnet_core_dotnet_core.repo
 
 
 
-                 
-                        using (SqlCommand command = new SqlCommand(sql, connection))
-                        {
-                            command.ExecuteNonQuery();
-                            command.Dispose();
-                            connection.Close();
-                        }
-                   
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.ExecuteNonQuery();
+                        command.Dispose();
+                        connection.Close();
+                    }
+
                 }
 
-               
+
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e.ToString());
-             
+
             }
         }
 
+       
+
+
+
 
     }
+}
 }
