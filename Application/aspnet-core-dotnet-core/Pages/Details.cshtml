@@ -1,4 +1,5 @@
 ﻿@page "{id}"
+@using aspnet_core_dotnet_core.Data
 @model aspnet_core_dotnet_core.Pages.Details
 
 @{
@@ -12,6 +13,11 @@
     <title></title>
 </head>
 <body>
+
+<div class="center">
+<img src="@Model.movieDetails.Poster" alt="Paris" class="center" />
+</div>
+
 <div>
     <table class="table">
         <thead>
@@ -29,10 +35,11 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model.movie) {
+        @foreach (var item in Model.movie)
+        {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem =>  item.movieId)
+                    @Html.DisplayFor(modelItem => item.movieId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.movieTitle)
@@ -40,7 +47,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.movieYear)
                 </td>
-            
+
             </tr>
         }
         </tbody>
@@ -54,19 +61,19 @@
         <tr>
             <th>
                 <b>Actors</b>
-                </th>
-           
+            </th>
+
         </tr>
         </thead>
         <tbody>
         @foreach (var item in Model.actors)
         {
             <tr>
-               
+
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
-                
+
 
             </tr>
         }
@@ -78,21 +85,21 @@
     <table class="table">
         <thead>
         <tr>
-           
-          <th>
-                          <b>Directors</b>
-                          </th>
+
+            <th>
+                <b>Directors</b>
+            </th>
         </tr>
         </thead>
         <tbody>
         @foreach (var item in Model.directors)
         {
             <tr>
-               
+
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
-                
+
 
             </tr>
         }
@@ -105,7 +112,7 @@
     <table class="table">
         <thead>
         <tr>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.ratings[0].rating)
             </th>
@@ -119,7 +126,7 @@
         @foreach (var item in Model.ratings)
         {
             <tr>
-               
+
                 <td>
                     @Html.DisplayFor(modelItem => item.votes)
                 </td>
@@ -132,7 +139,19 @@
         </tbody>
     </table>
 
-</div>
-<a asp-page="./Index" >Back to Index</a> 
+    <p> <u><b> Additional information from OMDb: </b></u></p>
+   
+    <p> <b> Movie Title:</b> @Model.movieDetails.Title </p>
+    <p> <b> Movie Year:</b> @Model.movieDetails.Year </p>
+    <p> <b> Movie Genre:</b> @Model.movieDetails.Genre </p>
+    <p> <b> Movie Language:</b> @Model.movieDetails.Language </p>
+    <p> <b> Movie Awards:</b> @Model.movieDetails.Awards </p>
+    <p> <b> Movie Country:</b> @Model.movieDetails.Country </p>
+    <p> <b> Movie Plot:</b> @Model.movieDetails.Plot </p>
+
+
+
+
+<a asp-page="./Index">Back to Index</a></div>
 </body>
 </html>

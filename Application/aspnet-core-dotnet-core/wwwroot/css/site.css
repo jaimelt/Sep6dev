@@ -126,3 +126,11 @@ body {
 .col-md-4 {
     color: black;
 }
+
+.center {
+    display: block;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
