@@ -18,24 +18,27 @@
 
 <body>
 
+
+
     <div class="row">
         <div class="col-lg-1">
-            <form asp-page-handler="votes" method="post">
-                <button class="btn btn-secondary">Most voted movies</button>
+            <form method="post">
+                <input type="submit" value="Votes" asp-page-handler="Votes" />
+                <input type="submit" value="Rating" asp-page-handler="Rating" />
+                <input type="submit" value="Favourites" asp-page-handler="Favourites" />
+
+                <select type="text" id="filtertype" name="filtertype">
+                    <option value="Director">Director</option>
+                    <option value="Year">Year</option>
+                    <option value="Exemplo3">Exemplo3</option>
+                </select>
+                <td><input type="text" id="value" name="Value" /></td>
+
             </form>
         </div>
-        <div class="col-lg-1">
-            <form asp-page-handler="rating" method="post">
-                <button class="btn btn-secondary">Most rated movies</button>
-            </form>
-        </div>
-        <div class="col-lg-1">
-            <form asp-page-handler="view" method="post">
-                <button class="btn btn-secondary">View</button>
-            </form>
-        </div>
+   
     </div>
-  
+
 
     <form method="post">
         <div>@Html.Raw(Model.ChartJson)</div>
