@@ -17,7 +17,5 @@ namespace aspnet_core_dotnet_core.Data
         public int votes { get; set; }
 
         public string email { get; set; }
-
-        public int movieCount { get; set; }
     }
 }
