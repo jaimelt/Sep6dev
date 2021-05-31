@@ -20,34 +20,48 @@ namespace aspnet_core_dotnet_core.Pages
         public IList<Movie> movie;
         public IList<Ratings> ratings;
         public IList<People> actors;
-        public IList<People> directors; 
+        public IList<People> directors;
+        public IList<Comments> comments;
 
         public RatingsServices RatingsServices;
         public MoviesService MoviesService;
         public ActorsService ActorsServices;
         public DirectorsService DirectorsService;
+        public CommentService CommentsService;
+        public static int MovieID;
 
         private static HttpClient client = new HttpClient();
         public MovieDetails movieDetails;
+        public LoginCredentials _loginCredentials;
 
-
-        public async Task OnGet([FromRoute] int id )
+        public Details(LoginCredentials loginCredentials)
         {
+            _loginCredentials = loginCredentials;
             RatingsServices = new RatingsServices();
             MoviesService = new MoviesService();
             ActorsServices = new ActorsService();
-            DirectorsService = new DirectorsService(); 
-            
+            DirectorsService = new DirectorsService();
+            CommentsService = new CommentService();
+       
             movie = new List<Movie>();
             ratings = new List<Ratings>();
             actors = new List<People>();
             directors = new List<People>();
+            movieDetails = new MovieDetails();
 
-            movie = MoviesService.searchMovieById(id);
-            ratings = RatingsServices.searchMovieByName(id).ToList();
-            actors = ActorsServices.searchMovieById(id).ToList();
+        }
+
+
+        public async Task OnGet([FromRoute] int id )
+        {
+
+            MovieID = id;
+
+            movie = MoviesService.searchMovieById(MovieID);
+            ratings = RatingsServices.searchMovieByName(MovieID).ToList();
+            actors = ActorsServices.searchMovieById(MovieID).ToList();
             directors = DirectorsService.searchMovieById(id).ToList();
-            
+            comments = CommentsService.getAllComments(MovieID, _loginCredentials.email).ToList();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -55,7 +69,6 @@ namespace aspnet_core_dotnet_core.Pages
             var options = new JsonSerializerOptions();
             MovieDetails m = await JsonSerializer.DeserializeAsync<MovieDetails>(await streamTask, options);
 
-            movieDetails = new MovieDetails(); 
             movieDetails.Title = m.Title;
             movieDetails.Poster = m.Poster; 
             movieDetails.Year = m.Year; 
@@ -68,5 +81,19 @@ namespace aspnet_core_dotnet_core.Pages
 
 
         }
+
+        public void OnPostSubmit(String Comment)
+        {
+
+            if (CommentsService != null)
+            {
+                CommentsService.postComment(MovieID, _loginCredentials.email, Comment);
+            }
+            OnGet(MovieID);
+
+
+        }
+
+
     }
 }
