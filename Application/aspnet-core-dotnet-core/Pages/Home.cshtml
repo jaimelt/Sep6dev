@@ -62,10 +62,10 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.movieYear)
                             </td>
-                             <td>
-                                            <a asp-page="./Details" asp-route-ID="@item.movieId">Details</a> 
-                                         <a asp-page="./MyList" asp-route-data="@item.movieId">Add to my list</a>
-                                        </td>
+                            <td>
+                                <a asp-page="./Details" asp-route-ID="@item.movieId">Details</a>
+                                <a asp-page="./MyList" asp-route-ID="@item.movieId">Add to my list</a>
+                            </td>
                         </tr>
                     }
                     </tbody>

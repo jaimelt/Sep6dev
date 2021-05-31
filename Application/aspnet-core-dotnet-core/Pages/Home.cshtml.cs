@@ -61,6 +61,10 @@ namespace aspnet_core_dotnet_core.Pages
             listMovies = moviesService.searchMovieByDirector(SearchStringDirector).ToList();
             
         }
+        
+        
+
+       
       
     }
 }
