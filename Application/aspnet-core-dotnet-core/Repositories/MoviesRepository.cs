@@ -155,7 +155,7 @@ namespace aspnet_core_dotnet_core.repo
                     connection.Open();
 
                     String sql =
-                        "SELECT  title, year FROM [dbo].[movies] AS movies JOIN [dbo].[stars] AS stars ON movies.id = stars.movie_id JOIN [dbo].[people] AS people ON people.id = stars.person_id WHERE people.name LIKE '%"+actorName+"%'";
+                        "SELECT title, year FROM [dbo].[movies] AS movies JOIN [dbo].[stars] AS stars ON movies.id = stars.movie_id JOIN [dbo].[people] AS people ON people.id = stars.person_id WHERE people.name LIKE '%"+actorName+"%'";
                     
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -167,7 +167,7 @@ namespace aspnet_core_dotnet_core.repo
                             {
                                 int index = 0;
                                 Movie movie = new Movie();
-                                
+
                                 movie.movieTitle = reader.GetString(index++);
                                 movie.movieYear = reader.GetInt32(index++);
 
@@ -202,7 +202,6 @@ namespace aspnet_core_dotnet_core.repo
                     String sql =
                         "SELECT  title, year FROM [dbo].[movies] AS movies JOIN [dbo].[directors] AS directors ON movies.id = directors.movie_id JOIN [dbo].[people] AS people ON people.id = directors.person_id WHERE people.name LIKE '%"+directorName+"%'";
 
-                    Console.WriteLine("We got here1");
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -213,10 +212,9 @@ namespace aspnet_core_dotnet_core.repo
                             {
                                 int index = 0;
                                 Movie movie = new Movie();
-                                
+
                                 movie.movieTitle = reader.GetString(index++);
                                 movie.movieYear = reader.GetInt32(index++);
-                                Console.WriteLine("We got here2");
 
                                 Movies.Add(movie);
                                 Console.WriteLine(movie.movieTitle);

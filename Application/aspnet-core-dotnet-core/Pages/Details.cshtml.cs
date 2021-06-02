@@ -28,9 +28,10 @@ namespace aspnet_core_dotnet_core.Pages
         public ActorsService ActorsServices;
         public DirectorsService DirectorsService;
         public CommentService CommentsService;
+        public APIClient.APIClient ApiClient; 
         public static int MovieID;
 
-        private static HttpClient client = new HttpClient();
+      //  private static HttpClient client = new HttpClient();
         public MovieDetails movieDetails;
         public LoginCredentials _loginCredentials;
 
@@ -42,7 +43,7 @@ namespace aspnet_core_dotnet_core.Pages
             ActorsServices = new ActorsService();
             DirectorsService = new DirectorsService();
             CommentsService = new CommentService();
-       
+            ApiClient = new APIClient.APIClient(); 
             movie = new List<Movie>();
             ratings = new List<Ratings>();
             actors = new List<People>();
@@ -62,23 +63,7 @@ namespace aspnet_core_dotnet_core.Pages
             actors = ActorsServices.searchMovieById(MovieID).ToList();
             directors = DirectorsService.searchMovieById(id).ToList();
             comments = CommentsService.getAllComments(MovieID, _loginCredentials.email).ToList();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            var streamTask = client.GetStreamAsync($"http://www.omdbapi.com/?apikey=49c14572&i=tt00{id}&plot=full");
-            var options = new JsonSerializerOptions();
-            MovieDetails m = await JsonSerializer.DeserializeAsync<MovieDetails>(await streamTask, options);
-
-            movieDetails.Title = m.Title;
-            movieDetails.Poster = m.Poster; 
-            movieDetails.Year = m.Year; 
-            movieDetails.Genre = m.Genre; 
-            movieDetails.Plot = m.Plot; 
-            movieDetails.Awards = m.Awards; 
-            movieDetails.Country = m.Country;
-            movieDetails.Language = m.Language;
-
-
+            movieDetails = ApiClient.getMovieDetails(id).Result;
 
         }
 

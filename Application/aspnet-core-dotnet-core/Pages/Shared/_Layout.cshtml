@@ -28,7 +28,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Home">ASP.NET Core</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Home">Movies Web App</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,21 +38,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Home">Home</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Search">Search</a>
+                                </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/GetAllMovies">AllMovies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/SearchByTitle">SearchByTitle</a>
-                        </li>
+                          <a class="nav-link text-light" asp-area="" asp-page="/ListOfMovies">My List</a>
+                          </li>
+                                
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Statistics">Statistics</a>
                         </li>
 
                         <li class="nav-item">
-                            <p class="text-light my-auto">Loged in as: @loginCredentials.email</p>
+                            <p class="nav-link text-light">Loged in as: @loginCredentials.email</p>
                         </li>
 
                     </ul>
@@ -72,7 +70,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; ASP.NET Core
+            Movies Web Application
         </div>
     </footer>
 
