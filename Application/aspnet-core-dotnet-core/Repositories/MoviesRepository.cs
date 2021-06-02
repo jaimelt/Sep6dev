@@ -155,7 +155,7 @@ namespace aspnet_core_dotnet_core.repo
                     connection.Open();
 
                     String sql =
-                        "SELECT title, year FROM [dbo].[movies] AS movies JOIN [dbo].[stars] AS stars ON movies.id = stars.movie_id JOIN [dbo].[people] AS people ON people.id = stars.person_id WHERE people.name LIKE '%"+actorName+"%'";
+                        "SELECT movies.id, title, year FROM [dbo].[movies] AS movies JOIN [dbo].[stars] AS stars ON movies.id = stars.movie_id JOIN [dbo].[people] AS people ON people.id = stars.person_id WHERE people.name LIKE '%"+actorName+"%'";
                     
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -168,6 +168,7 @@ namespace aspnet_core_dotnet_core.repo
                                 int index = 0;
                                 Movie movie = new Movie();
 
+                                movie.movieId = reader.GetInt32(index++);
                                 movie.movieTitle = reader.GetString(index++);
                                 movie.movieYear = reader.GetInt32(index++);
 
@@ -200,7 +201,7 @@ namespace aspnet_core_dotnet_core.repo
                     connection.Open();
 
                     String sql =
-                        "SELECT  title, year FROM [dbo].[movies] AS movies JOIN [dbo].[directors] AS directors ON movies.id = directors.movie_id JOIN [dbo].[people] AS people ON people.id = directors.person_id WHERE people.name LIKE '%"+directorName+"%'";
+                        "SELECT  movies.id, title, year FROM [dbo].[movies] AS movies JOIN [dbo].[directors] AS directors ON movies.id = directors.movie_id JOIN [dbo].[people] AS people ON people.id = directors.person_id WHERE people.name LIKE '%"+directorName+"%'";
 
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -213,6 +214,7 @@ namespace aspnet_core_dotnet_core.repo
                                 int index = 0;
                                 Movie movie = new Movie();
 
+                                movie.movieId = reader.GetInt32(index++);
                                 movie.movieTitle = reader.GetString(index++);
                                 movie.movieYear = reader.GetInt32(index++);
 
